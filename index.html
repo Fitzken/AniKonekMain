@@ -13,6 +13,8 @@
 <meta property="og:title" content="AniKonek — Buy Directly from Filipino Farmers">
 <meta property="og:description" content="Farmers earn little. You pay a lot. Buying direct helps both. See the problem, the gap, and the win-win.">
 <meta property="og:locale" content="en_PH">
+<meta property="og:image" content="https://anikonek.ph/og-image.jpg">
+<meta property="og:image:alt" content="AniKonek — Fresher food for you, fairer pay for them. Filipino farmers illustration.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AniKonek — Buy Directly from Filipino Farmers">
 <meta name="twitter:description" content="Fresher food for you, fairer pay for them. A demo advocacy website with sourced PSA data.">
@@ -531,7 +533,7 @@ dialog input:focus,dialog select:focus{border-color:var(--em3)}
           <label style="font-size:.86rem;font-weight:800">Middleman <b id="vW">12%</b><input type="range" id="sW" min="0" max="30" value="12" style="width:100%"></label>
           <label style="font-size:.86rem;font-weight:800">Storage <b id="vD">8%</b><input type="range" id="sD" min="0" max="30" value="8" style="width:100%"></label>
           <label style="font-size:.86rem;font-weight:800">Store <b id="vR">15%</b><input type="range" id="sR" min="0" max="30" value="15" style="width:100%"></label>
-          <div style="display:flex;gap:10px"><button class="btn sm" id="chainLong">Long chain</button><button class="btn sm gold" id="chainShort">Shorter chain</button></div>
+          <div style="display:flex;gap:10px"><button class="btn sm" id="chainLong">Long chain</button><button class="btn sm gold" id="chainShort">Shorter chain</button><button class="btn sm ghost" id="chainReset">Reset</button></div>
         </div>
         <div>
           <div style="height:38px;border-radius:12px;overflow:hidden;display:flex" id="splitBar" role="img" aria-label="Bar showing how 100 pesos splits between farmer and chain costs"></div>
@@ -760,15 +762,15 @@ dialog input:focus,dialog select:focus{border-color:var(--em3)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <noscript><p style="text-align:center;padding:14px;background:#fdf3df;font-weight:700">Interactive tools (price bars, calendar, directory, pledge) need JavaScript. The rest of the page remains readable.</p></noscript>
 
-<dialog id="farmDialog" aria-labelledby="dlgTitle">
-  <div class="dhead"><h3 id="dlgTitle" style="font-family:var(--disp)">List my farm / market</h3><p style="font-size:.79rem;color:#bcd8c6">Demo form — activates when real data goes live.</p></div>
-  <form method="dialog">
+<dialog id="farmDialog" aria-labelledby="dlgTitle" aria-describedby="dlgDesc">
+  <div class="dhead"><h3 id="dlgTitle" style="font-family:var(--disp)">List my farm / market</h3><p id="dlgDesc" style="font-size:.79rem;color:#bcd8c6">Demo form — activates when real data goes live.</p></div>
+  <form method="dialog" id="farmForm">
     <label>Name<input required placeholder="e.g., Sariwa Cooperative"></label>
     <label>Region<select><option>Luzon</option><option>Visayas</option><option>Mindanao</option></select></label>
     <label>Crops<input required placeholder="e.g., vegetables, rice"></label>
-    <label>Contact<input required placeholder="you@coop.ph"></label>
+    <label>Contact<input type="email" required placeholder="you@coop.ph"></label>
     <p style="font-size:.72rem;color:var(--mut)">You agree to be contacted for verification (Data Privacy Act of 2012).</p>
-    <div style="display:flex;gap:10px"><button class="btn" value="ok">Submit</button><button class="btn ghost" value="cancel">Cancel</button></div>
+    <div style="display:flex;gap:10px"><button class="btn" value="ok" id="farmSubmit">Submit</button><button class="btn ghost" value="cancel">Cancel</button></div>
   </form>
 </dialog>
 
@@ -819,6 +821,7 @@ const STOPS=[['farm','Farm','grows it'],['trader','Trader','buys &amp; lends'],[
 $('#stops').innerHTML=STOPS.map(([k,b,d])=>`<div class="stop"><span class="ic">${STOPIC[k]}</span><b>${b}</b>${d}</div>`).join('');
 
 /* ₱100 tool */
+const DEFAULTS={sT:8,sW:12,sD:8,sR:15};
 function tool(){const t=+$('#sT').value,w=+$('#sW').value,d=+$('#sD').value,r=+$('#sR').value;
  $('#vT').textContent=t+'%';$('#vW').textContent=w+'%';$('#vD').textContent=d+'%';$('#vR').textContent=r+'%';
  const f=Math.max(0,100-t-w-d-r);
@@ -827,6 +830,7 @@ function tool(){const t=+$('#sT').value,w=+$('#sW').value,d=+$('#sD').value,r=+$
 ['sT','sW','sD','sR'].forEach(id=>$('#'+id).addEventListener('input',tool));
 $('#chainLong').onclick=()=>{[['sT',8],['sW',12],['sD',8],['sR',15]].forEach(([i,v])=>$('#'+i).value=v);tool();toast('Long chain: many stops, small farmer share.')};
 $('#chainShort').onclick=()=>{[['sT',4],['sW',4],['sD',3],['sR',7]].forEach(([i,v])=>$('#'+i).value=v);tool();toast('Shorter chain: the farmer keeps more.')};
+$('#chainReset').onclick=()=>{Object.entries(DEFAULTS).forEach(([i,v])=>{$('#'+i).value=v});tool();toast('Values reset to defaults.')};
 tool();
 
 /* find & buy */
@@ -852,8 +856,44 @@ $('#findTabs').addEventListener('click',e=>{const b=e.target.closest('button[rol
  $$('#findTabs [role="tab"]').forEach(x=>{x.setAttribute('aria-selected',x===b);x.classList.toggle('on',x===b)});
  $('#panelDir').hidden=b.dataset.tab!=='dir';$('#panelEv').hidden=b.dataset.tab!=='ev';});
 const dlg=$('#farmDialog');
-['openList','openList2'].forEach(id=>$('#'+id).addEventListener('click',()=>dlg.showModal()));
+['openList','openList2'].forEach(id=>$('#'+id).addEventListener('click',()=>{dlg.showModal();trapFocus(dlg)}));
+
+/* focus trap for modal */
+function trapFocus(dialog){
+  const focusables='button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  const first=dialog.querySelectorAll(focusables)[0];
+  const last=dialog.querySelectorAll(focusables).pop();
+  first&&first.focus();
+  dialog.addEventListener('keydown',function(e){
+    if(e.key!=='Tab')return;
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  });
+}
+
 dlg.addEventListener('close',()=>{if(dlg.returnValue==='ok')toast('Salamat! Queued for verification.')});
+
+/* farm form validation with loading state */
+const farmForm=$('#farmForm');
+const farmSubmit=$('#farmSubmit');
+farmForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const contactInput=farmForm.querySelector('input[type="email"]');
+  const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(contactInput.value&&!emailRegex.test(contactInput.value)){
+    toast('Please enter a valid email address.');
+    contactInput.focus();
+    return;
+  }
+  const originalText=farmSubmit.textContent;
+  farmSubmit.disabled=true;
+  farmSubmit.textContent='Submitting...';
+  setTimeout(()=>{
+    farmSubmit.disabled=false;
+    farmSubmit.textContent=originalText;
+    dlg.close('ok');
+  },800);
+});
 
 /* calendar */
 const ICONS={
