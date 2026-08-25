@@ -76,34 +76,20 @@ main{padding:60px 0}
 .filters select:hover{border-color:var(--em3)}
 .filters .btn{margin-left:auto}
 
-/* Search bar */
-.search-bar{width:100%;max-width:400px;position:relative;margin-bottom:20px}
-.search-bar input{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px 16px 12px 44px;font:inherit;font-size:.95rem;background:#fff;transition:border-color .2s}
-.search-bar input:focus{outline:none;border-color:var(--em3)}
-.search-bar svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--mut)}
-
-/* Results count */
-.results-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:.88rem;color:var(--mut)}
-.results-count b{color:var(--em2);font-size:1.05rem}
-
 /* Directory listing */
 .dir-list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 @media(max-width:760px){.dir-list{grid-template-columns:1fr}}
 .dir-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px;transition:all .25s;position:relative;overflow:hidden}
 .dir-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--g-brand)}
 .dir-card:hover{border-color:var(--em3);box-shadow:var(--sh);transform:translateY(-4px)}
-.dir-card h3{font-size:1.15rem;margin-bottom:8px;color:var(--ink)}
-.dir-card .location{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--mut);margin-bottom:10px}
-.dir-card .location svg{width:16px;height:16px;flex-shrink:0}
+.dir-card h3{font-size:1.05rem;margin-bottom:10px;color:var(--ink)}
 .dir-card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .pill{font-size:.7rem;font-weight:800;border-radius:6px;padding:4px 10px;background:#eef3ec;color:var(--mut)}
 .pill.r{background:#e8f2ea;color:var(--em2)}
 .pill.t{background:var(--g-gold);color:#241a05}
-.dir-card p{font-size:.9rem;color:var(--mut);line-height:1.65}
-.dir-card .contact{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap}
-.dir-card .contact a,.dir-card .contact button{font-weight:700;font-size:.86rem;display:inline-flex;align-items:center;gap:6px}
-.dir-card .contact button{background:none;border:none;padding:0;color:var(--em2);cursor:pointer;font:inherit}
-.dir-card .contact button:hover{text-decoration:underline}
+.dir-card p{font-size:.88rem;color:var(--mut);line-height:1.6}
+.dir-card .contact{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.dir-card .contact a{font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:6px}
 
 /* Events */
 .event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -146,63 +132,6 @@ dialog .actions{display:flex;gap:10px}
 /* Toast */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--em1);color:#fff;border-radius:12px;padding:12px 20px;font-size:.86rem;opacity:0;pointer-events:none;transition:.35s;z-index:115}
 .toast.show{opacity:1;transform:translateX(-50%)}
-
-/* Dialog */
-dialog{border:none;border-radius:20px;padding:0;max-width:500px;width:calc(100% - 40px)}
-dialog::backdrop{background:rgba(4,32,23,.55)}
-dialog .dhead{background:var(--g-brand);color:#fff;padding:22px 26px}
-dialog form{padding:26px;display:grid;gap:14px}
-dialog label{font-size:.82rem;font-weight:800;display:grid;gap:6px}
-dialog input,dialog select,dialog textarea{border:2px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;width:100%}
-dialog textarea{min-height:80px;resize:vertical}
-dialog .actions{display:flex;gap:10px}
-
-/* Map view toggle */
-.view-toggle{display:flex;gap:8px;margin-bottom:20px}
-.view-toggle button{border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 14px;font-weight:700;font-size:.8rem;cursor:pointer;color:var(--mut);transition:all .2s;display:flex;align-items:center;gap:6px}
-.view-toggle button:hover{border-color:var(--em3);color:var(--em2)}
-.view-toggle button.on{background:var(--g-brand);border-color:transparent;color:#fff}
-
-/* Map container */
-.map-container{display:none;background:#eef3ec;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:24px;min-height:400px}
-.map-container.active{display:block}
-.map-placeholder{background:linear-gradient(135deg,#e8f2ea,#d4e8d9);border-radius:12px;height:360px;display:grid;place-items:center;text-align:center;color:var(--mut);font-size:.95rem}
-.map-placeholder svg{width:64px;height:64px;margin-bottom:16px;opacity:.6}
-
-/* Favorite button */
-.dir-card .favorite-btn{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--mut);transition:all .2s;z-index:2}
-.dir-card .favorite-btn:hover{transform:scale(1.15)}
-.dir-card .favorite-btn.active{color:#e74c3c}
-
-/* Share button */
-.share-btn{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--mut);padding:6px;border-radius:8px;transition:all .2s}
-.share-btn:hover{background:#e8f2ea;color:var(--em2)}
-
-/* Profile modal specific */
-.profile-modal{max-width:600px}
-.profile-header{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
-.profile-avatar{width:80px;height:80px;border-radius:50%;background:var(--g-brand);display:grid;place-items:center;color:#fff;font-size:1.8rem;font-weight:800}
-.profile-info h3{font-family:var(--disp);font-size:1.4rem;margin-bottom:6px}
-.profile-info .location{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--mut);margin-bottom:8px}
-.profile-info .location svg{width:16px;height:16px}
-.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.profile-stat{background:#f7f9f5;border-radius:10px;padding:12px;text-align:center}
-.profile-stat b{display:block;font-size:1.2rem;color:var(--em2);font-weight:800}
-.profile-stat span{font-size:.72rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-.profile-products{margin-bottom:20px}
-.profile-products h4{font-size:.85rem;font-weight:800;margin-bottom:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-.product-tags{display:flex;flex-wrap:wrap;gap:8px}
-.product-tag{background:#e8f2ea;color:var(--em2);border-radius:20px;padding:6px 14px;font-size:.8rem;font-weight:700}
-.profile-contact{display:grid;gap:12px}
-.contact-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--g-brand);color:#fff;border:none;border-radius:10px;padding:12px;font-weight:800;cursor:pointer;transition:all .2s;text-decoration:none}
-.contact-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,46,33,.15)}
-.contact-btn.secondary{background:#fff;border:2px solid var(--line);color:var(--ink);box-shadow:none}
-.contact-btn.secondary:hover{border-color:var(--em3);color:var(--em2)}
-
-/* Listing form enhancements */
-.form-section{margin-bottom:16px}
-.form-section h4{font-size:.85rem;font-weight:800;margin-bottom:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-.hint{font-size:.72rem;color:var(--mut);margin-top:4px}
 </style>
 </head>
 <body>
@@ -243,11 +172,6 @@ dialog .actions{display:flex;gap:10px}
       <button data-tab="ev" role="tab" aria-selected="false">Events</button>
     </div>
 
-    <div class="search-bar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21 l-4.35 -4.35"/></svg>
-      <input type="text" id="searchInput" placeholder="Search by name, crop, or location..." aria-label="Search listings">
-    </div>
-
     <div class="filters">
       <select id="fRegion" aria-label="Filter by region">
         <option value="all">All regions</option>
@@ -271,28 +195,8 @@ dialog .actions{display:flex;gap:10px}
       <button class="btn sm gold" id="openList">＋ List my farm</button>
     </div>
 
-    <div class="results-info">
-      <span class="results-count"><b id="resultCount">0</b> listings found</span>
-      <div class="view-toggle">
-        <button class="on" id="viewGrid" aria-label="Grid view">▦ Grid</button>
-        <button id="viewMap" aria-label="Map view">🗺️ Map</button>
-      </div>
-      <button class="btn sm ghost" id="resetFilters" style="background:transparent;border:2px solid var(--line);box-shadow:none">Reset filters</button>
-    </div>
-
-    <div class="map-container" id="mapContainer">
-      <div class="map-placeholder">
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
-          <p><b>Interactive Map View</b></p>
-          <p style="font-size:.85rem;margin-top:8px;">Map integration coming soon — browse farmers by location with real-time distance and directions.</p>
-        </div>
-      </div>
-    </div>
-
     <div id="panelDir" role="tabpanel">
       <div class="dir-list" id="dirList"></div>
-      <p id="noResults" hidden style="text-align:center;padding:40px;color:var(--mut);font-size:1.05rem;">No listings match your filters. Try adjusting your search or filter criteria.</p>
     </div>
 
     <div id="panelEv" role="tabpanel" hidden>
@@ -346,78 +250,14 @@ dialog .actions{display:flex;gap:10px}
     <p style="font-size:.79rem;color:#bcd8c6">Demo form — activates when real data goes live.</p>
   </div>
   <form method="dialog" id="farmForm">
-    <div class="form-section">
-      <h4>Basic Information</h4>
-      <label>Name<input required placeholder="e.g., Sariwa Cooperative"></label>
-      <label>Region<select><option>Luzon</option><option>Visayas</option><option>Mindanao</option></select></label>
-    </div>
-    <div class="form-section">
-      <h4>Products & Contact</h4>
-      <label>Crops<input required placeholder="e.g., vegetables, rice"></label>
-      <label>Contact<input type="email" required placeholder="you@coop.ph"></label>
-      <p class="hint">We'll verify your details through the Department of Agriculture.</p>
-    </div>
+    <label>Name<input required placeholder="e.g., Sariwa Cooperative"></label>
+    <label>Region<select><option>Luzon</option><option>Visayas</option><option>Mindanao</option></select></label>
+    <label>Crops<input required placeholder="e.g., vegetables, rice"></label>
+    <label>Contact<input type="email" required placeholder="you@coop.ph"></label>
     <p style="font-size:.72rem;color:var(--mut)">You agree to be contacted for verification (Data Privacy Act of 2012).</p>
     <div class="actions">
       <button class="btn" value="ok" id="farmSubmit">Submit</button>
       <button class="btn ghost" value="cancel" style="background:transparent;border:2px solid var(--line);box-shadow:none">Cancel</button>
-    </div>
-  </form>
-</dialog>
-
-<dialog id="profileDialog" class="profile-modal">
-  <div class="dhead">
-    <h3 style="font-family:var(--disp)">Farmer Profile</h3>
-    <p style="font-size:.79rem;color:#bcd8c6">Verified listing</p>
-  </div>
-  <form method="dialog">
-    <div class="profile-header">
-      <div class="profile-avatar" id="pfAvatar">FC</div>
-      <div class="profile-info">
-        <h3 id="pfName">Farm Name</h3>
-        <div class="location" id="pfLocation">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Location, Region</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="profile-stats">
-      <div class="profile-stat">
-        <b id="pfMembers">150+</b>
-        <span>Members</span>
-      </div>
-      <div class="profile-stat">
-        <b id="pfEstablished">2018</b>
-        <span>Established</span>
-      </div>
-      <div class="profile-stat">
-        <b id="pfFavorites">85</b>
-        <span>Favorites</span>
-      </div>
-    </div>
-    
-    <div class="profile-products">
-      <h4>Products</h4>
-      <div class="product-tags" id="pfProducts">
-        <span class="product-tag">Rice</span>
-        <span class="product-tag">Vegetables</span>
-      </div>
-    </div>
-    
-    <div class="profile-products">
-      <h4>About</h4>
-      <p id="pfDesc" style="font-size:.9rem;color:var(--mut);line-height:1.6">Description here.</p>
-    </div>
-    
-    <div class="profile-contact">
-      <a href="#" class="contact-btn" id="pfEmail">✉️ Send Message</a>
-      <button type="button" class="contact-btn secondary" onclick="toast('Call feature coming soon!')">📞 Call Farmer</button>
-      <button type="button" class="contact-btn secondary" onclick="toast('Directions feature coming soon!')">🗺️ Get Directions</button>
-    </div>
-    
-    <div class="actions" style="margin-top:20px">
-      <button class="btn ghost" value="cancel" style="background:transparent;border:2px solid var(--line);box-shadow:none;width:100%">Close</button>
     </div>
   </form>
 </dialog>
@@ -446,106 +286,20 @@ const LIST=[
 const TYPE={coop:'Cooperative',market:'Market',kadiwa:'KADIWA'};
 const CROPLBL={rice:'Rice',veg:'Vegetables',mixed:'Mixed',fish:'Crops + fish'};
 
-/* Enhanced listings with location data and additional fields */
-const LIST_WITH_LOCATION=LIST.map((l,i)=>({
-  ...l,
-  location:l.reg==='Luzon'?(l.n.includes('Nueva Ecija')?'Nueva Ecija':l.n.includes('Benguet')?'Benguet':l.n.includes('Cavite')?'Cavite':'Quezon'):
-           l.reg==='Visayas'?(l.n.includes('Iloilo')?'Iloilo':l.n.includes('Negros')?'Negros':'Cebu'):
-           (l.n.includes('Bukidnon')?'Bukidnon':l.n.includes('Davao')?'Davao':'Zamboanga'),
-  members: Math.floor(Math.random()*200)+50,
-  established: 2015 + (i % 8),
-  verified: i % 3 !== 2,
-  favorites: Math.floor(Math.random()*150)+20
-}));
-
-/* Favorites management */
-let favorites = JSON.parse(localStorage.getItem('anikonek_favorites') || '[]');
-
-function toggleFavorite(id){
-  const idx = favorites.indexOf(id);
-  if(idx === -1){
-    favorites.push(id);
-    toast('Added to favorites!');
-  } else {
-    favorites.splice(idx,1);
-    toast('Removed from favorites');
-  }
-  localStorage.setItem('anikonek_favorites', JSON.stringify(favorites));
-  renderListings(currentFiltered);
-}
-
-function isFavorite(id){
-  return favorites.includes(id);
-}
-
-/* Share functionality */
-function shareListing(listing){
-  if(navigator.share){
-    navigator.share({
-      title: listing.n,
-      text: listing.d,
-      url: window.location.href + '#'+listing.id
-    }).catch(()=>{});
-  } else {
-    navigator.clipboard.writeText(window.location.href + ' — ' + listing.n).then(()=>{
-      toast('Link copied to clipboard!');
-    });
-  }
-}
-
-/* View profile modal */
-function viewProfile(listing){
-  const dlg = $('#profileDialog');
-  const initials = listing.n.split(' ').map(w=>w[0]).slice(0,2).join('');
-  
-  $('#pfAvatar').textContent = initials;
-  $('#pfName').textContent = listing.n;
-  $('#pfLocation').innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${listing.location}, ${listing.reg}</span>`;
-  $('#pfMembers').textContent = listing.members + '+';
-  $('#pfEstablished').textContent = listing.established;
-  $('#pfFavorites').textContent = listing.favorites;
-  $('#pfProducts').innerHTML = listing.crop.split(',').map(c=>`<span class="product-tag">${CROPLBL[c.trim()]||c.trim()}</span>`).join('');
-  $('#pfDesc').textContent = listing.d;
-  $('#pfEmail').href = 'mailto:' + listing.contact;
-  
-  dlg.showModal();
-}
-
-let currentFiltered = LIST_WITH_LOCATION;
-
-function renderListings(data){
-  currentFiltered = data;
-  if(data.length===0){
-    $('#dirList').innerHTML='';
-    $('#noResults').hidden=false;
-    $('#resultCount').textContent='0';
-    return;
-  }
-  $('#noResults').hidden=true;
-  $('#resultCount').textContent=data.length;
-  $('#dirList').innerHTML=data.map(l=>`
-    <div class="dir-card" data-id="${l.id}">
-      <button class="favorite-btn ${isFavorite(l.id)?'active':''}" onclick="toggleFavorite('${l.id}')" aria-label="Toggle favorite">${isFavorite(l.id)?'❤️':'🤍'}</button>
-      <h3>${l.n}</h3>
-      <div class="location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${l.location}, ${l.reg}</span></div>
-      <div class="meta">
-        <span class="pill r">${l.reg}</span>
-        <span class="pill">${CROPLBL[l.crop]}</span>
-        <span class="pill t">${TYPE[l.type]}</span>
-        ${l.verified?'<span class="pill" style="background:#d4edda;color:#155724">✓ Verified</span>':''}
-      </div>
-      <p>${l.d}</p>
-      <div class="contact">
-        <a href="mailto:${l.contact}">✉️ Email</a>
-        <button onclick="toast('Call feature coming soon!')">📞 Call</button>
-        <button onclick="viewProfile(LIST_WITH_LOCATION.find(x=>x.id='${l.id}'))">👤 View Profile</button>
-        <button class="share-btn" onclick="shareListing(LIST_WITH_LOCATION.find(x=>x.id='${l.id}'))" aria-label="Share">🔗</button>
-      </div>
+$('#dirList').innerHTML=LIST.map(l=>`
+  <div class="dir-card" data-id="${l.id}">
+    <h3>${l.n}</h3>
+    <div class="meta">
+      <span class="pill r">${l.reg}</span>
+      <span class="pill">${CROPLBL[l.crop]}</span>
+      <span class="pill t">${TYPE[l.type]}</span>
     </div>
-  `).join('');
-}
-
-renderListings(LIST_WITH_LOCATION);
+    <p>${l.d}</p>
+    <div class="contact">
+      <a href="mailto:${l.contact}">✉️ Contact</a>
+    </div>
+  </div>
+`).join('');
 
 /* Events */
 const EVENTS=[
@@ -562,51 +316,17 @@ $('#eventGrid').innerHTML=EVENTS.map(e=>`
   </div>
 `).join('');
 
-/* Filters + Search */
+/* Filters */
 function applyFilters(){
   const rg=$('#fRegion').value,cr=$('#fCrop').value,ty=$('#fType').value;
-  const search=$('#searchInput').value.toLowerCase().trim();
-  
-  let filtered=LIST_WITH_LOCATION.filter(l=>{
-    const matchRegion=rg==='all'||l.reg===rg;
-    const matchCrop=cr==='all'||l.crop===cr;
-    const matchType=ty==='all'||l.type===ty;
-    const matchSearch=!search||l.n.toLowerCase().includes(search)||l.d.toLowerCase().includes(search)||l.location.toLowerCase().includes(search);
-    return matchRegion&&matchCrop&&matchType&&matchSearch;
+  $$('.dir-card').forEach(c=>{
+    const l=LIST.find(x=>x.id===c.dataset.id);
+    const ok=(rg==='all'||l.reg===rg)&&(cr==='all'||l.crop===cr)&&(ty==='all'||l.type===ty);
+    c.style.display=ok?'':'none';
   });
-  
-  renderListings(filtered);
 }
-
 ['fRegion','fCrop','fType'].forEach(id=>$('#'+id).addEventListener('change',applyFilters));
-$('#searchInput').addEventListener('input',applyFilters);
-
-/* Reset filters */
-$('#resetFilters').addEventListener('click',()=>{
-  $('#fRegion').value='all';
-  $('#fCrop').value='all';
-  $('#fType').value='all';
-  $('#searchInput').value='';
-  applyFilters();
-  toast('Filters reset');
-});
-
 applyFilters();
-
-/* View toggle - Grid/Map */
-$('#viewGrid').addEventListener('click', ()=>{
-  $('#viewGrid').classList.add('on');
-  $('#viewMap').classList.remove('on');
-  $('#mapContainer').classList.remove('active');
-  $('#dirList').parentElement.style.display = 'block';
-});
-
-$('#viewMap').addEventListener('click', ()=>{
-  $('#viewMap').classList.add('on');
-  $('#viewGrid').classList.remove('on');
-  $('#mapContainer').classList.add('active');
-  $('#dirList').parentElement.style.display = 'none';
-});
 
 /* Tabs */
 $('#panelDir').parentElement.addEventListener('click',e=>{
