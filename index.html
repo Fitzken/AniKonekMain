@@ -114,22 +114,11 @@ header.scrolled{box-shadow:var(--sh)}
 .burger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--em2);padding:6px}
 @media(max-width:940px){.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:14px;border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.nav-links a::after{display:none}.burger{display:block}.head-cta{display:none}}
 
-/* ============ TICKER ============ */
-.ticker{background:var(--g-brand);color:#eaf6ee;overflow:hidden;font-size:.83rem}
-.ticker-track{display:flex;gap:60px;white-space:nowrap;padding:10px 0;width:max-content;animation:marq 42s linear infinite}
-.ticker:hover .ticker-track{animation-play-state:paused}
-.ticker b{color:var(--gold1)}
-@keyframes marq{to{transform:translateX(-50%)}}
-
 /* ============ HERO ============ */
 .hero{position:relative;color:#fff;overflow:hidden;background:var(--em1)}
 .hero-art,.hero-shade{position:absolute;inset:0}
 .hero-art svg{width:100%;height:100%}
 .hero-shade{background:linear-gradient(180deg,rgba(4,32,23,.55),rgba(4,32,23,.2) 40%,rgba(4,32,23,.9))}
-.cloud{opacity:.4;animation:drift linear infinite}
-.cloud.c1{animation-duration:75s;animation-delay:-20s}
-.cloud.c2{animation-duration:95s;animation-delay:-60s}
-@keyframes drift{from{transform:translateX(-260px)}to{transform:translateX(1620px)}}
 .hero-curve{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:64px;z-index:2}
 .hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;padding:88px 0 96px;align-items:center}
 .hero-grid>*{animation:rise .9s .15s both}
@@ -188,17 +177,24 @@ h2{font-family:var(--disp);font-size:clamp(1.75rem,3.4vw,2.55rem);line-height:1.
 .handshake{width:min(250px,70%);margin:0 auto 26px}
 
 /* comparisons */
-.cmp{display:grid;gap:6px;margin:14px 0}
-.cmp .row{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;font-size:.86rem;font-weight:700}
-.cmp .track{height:18px;background:#eef3ec;border-radius:99px;overflow:hidden}
+.cmp{display:grid;gap:8px;margin:16px 0}
+.cmp .row{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;font-size:.95rem;font-weight:800}
+.cmp .track{height:24px;background:#eef3ec;border-radius:99px;overflow:hidden}
 .cmp .track i{display:block;height:100%;border-radius:99px;width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1) .15s}
 .reveal.in .cmp .track i{width:var(--w)}
 .f-farm{background:var(--g-gold)}
 .f-store{background:var(--g-brand)}
-.tag{font-size:.65rem;font-weight:800;border-radius:6px;padding:3px 8px;letter-spacing:.04em}
+.tag{font-size:.7rem;font-weight:800;border-radius:6px;padding:4px 10px;letter-spacing:.04em}
 .tag.psa{background:#e8f2ea;color:var(--em2)}
 .tag.ex{background:#fdf3df;color:var(--gold-ink)}
-.asof{display:inline-flex;gap:8px;align-items:center;background:var(--g-gold);color:#241a05;font-weight:800;font-size:.75rem;border-radius:999px;padding:7px 14px;margin-bottom:18px}
+.asof{display:inline-flex;gap:8px;align-items:center;background:var(--g-gold);color:#241a05;font-weight:800;font-size:.8rem;border-radius:999px;padding:8px 16px;margin-bottom:18px}
+
+/* Enhanced price cards */
+.price-card h3{font-size:1.25rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.price-card .price-display{display:flex;align-items:baseline;gap:16px;margin-top:12px}
+.price-card .price-display .farmer-price{font-size:1.85rem;font-weight:800;color:var(--gold-ink)}
+.price-card .price-display .store-price{font-size:2.2rem;font-weight:800;background:var(--g-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price-card .price-label{font-size:.75rem;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
 
 /* journey */
 .scene{border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
@@ -294,7 +290,7 @@ dialog input:focus,dialog select:focus{border-color:var(--em3)}
 .reveal.in{opacity:1;transform:none}
 
 @media print{
- header,.ticker,.sticky-cta,.toast,.filters,.tabs,.btn,dialog,.hero-ctas,.skip,.burger,.loader,.progress,.totop,.cue{display:none!important}
+ header,.sticky-cta,.toast,.filters,.tabs,.btn,dialog,.hero-ctas,.skip,.burger,.loader,.progress,.totop,.cue{display:none!important}
  body{background:#fff;color:#000}
  section{padding:22px 0}
  .card,.dir-card,.event-card{box-shadow:none;border:1px solid #bbb;break-inside:avoid}
@@ -345,13 +341,6 @@ dialog input:focus,dialog select:focus{border-color:var(--em3)}
   </div>
 </header>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-track" id="tick">
-  <span>2025: big harvest, but farmers got <b>₱17.70/kg</b> — lowest in 3 years (PSA)</span>
-  <span>Store rice, Jul 2026: <b>₱49.30/kg</b> (PSA)</span>
-  <span>KADIWA direct markets reached <b>12M+ Filipinos</b> (PNA)</span>
-  <span>Buy direct: fresher food, fairer pay</span>
-</div></div>
-
 <main id="main">
 <!-- HERO -->
 <section class="hero" id="home" style="padding:0">
@@ -365,8 +354,6 @@ dialog input:focus,dialog select:focus{border-color:var(--em3)}
       </defs>
       <rect width="1440" height="810" fill="url(#sky)"/>
       <circle id="sun" cx="1120" cy="150" r="70" fill="#ffe9ad" opacity=".9"/>
-      <g class="cloud c1"><ellipse cx="200" cy="140" rx="90" ry="20" fill="#fff"/><ellipse cx="260" cy="126" rx="60" ry="16" fill="#fff"/></g>
-      <g class="cloud c2"><ellipse cx="700" cy="220" rx="110" ry="22" fill="#fff"/><ellipse cx="770" cy="204" rx="70" ry="16" fill="#fff"/></g>
       <path d="M0 300 L260 170 L520 300 L780 150 L1060 300 L1290 190 L1440 280 V810 H0 Z" fill="#0a4a2e" opacity=".8"/>
       <path d="M0 380 C300 340 620 420 900 380 C1140 350 1320 400 1440 380 V810 H0 Z" fill="url(#t1)"/>
       <path d="M0 380 C300 340 620 420 900 380 C1140 350 1320 400 1440 380" fill="none" stroke="#bfe8cd" stroke-width="5" opacity=".7"/>
@@ -780,13 +767,13 @@ const PRICES=[
  {n:'Chicken',f:125.16,r:170,ex:false,gap:'Gap: ₱44.84'},
  {n:'Cabbage',f:35,r:115,ex:true,gap:'Gap: ₱80.00'}
 ];
-$('#priceGrid').innerHTML=PRICES.map((p,i)=>{const w=(p.f/p.r*100).toFixed(0);return `<div class="card pad" style="--d:${(i%2)*.08+.04}s">
+$('#priceGrid').innerHTML=PRICES.map((p,i)=>{const w=(p.f/p.r*100).toFixed(0);return `<div class="card pad price-card" style="--d:${(i%2)*.08+.04}s">
  <h3 style="font-family:var(--disp)">${p.n} <span class="tag ${p.ex?'ex':'psa'}">${p.ex?'FARMGATE EXAMPLE':'PSA'}</span></h3>
  <div class="cmp">
-  <div class="row"><span>Farmer</span><div class="track"><i class="f-farm" style="--w:${w}%"></i></div><b>₱${p.f.toFixed(2)}</b></div>
-  <div class="row"><span>Store</span><div class="track"><i class="f-store" style="--w:100%"></i></div><b>₱${p.r.toFixed(2)}</b></div>
+  <div class="row"><span>Farmer gets</span><div class="track"><i class="f-farm" style="--w:${w}%"></i></div><b class="farmer-price">₱${p.f.toFixed(2)}</b></div>
+  <div class="row"><span>You pay at store</span><div class="track"><i class="f-store" style="--w:100%"></i></div><b class="store-price">₱${p.r.toFixed(2)}</b></div>
  </div>
- <p class="note" style="margin-top:4px">${p.gap}</p></div>`}).join('');
+ <p class="note" style="margin-top:8px;font-size:.85rem;color:var(--mut)">${p.gap}</p></div>`}).join('');
 
 /* journey stops */
 const STOPIC={
